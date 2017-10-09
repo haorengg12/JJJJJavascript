@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<link type="text/css" href="10-13.css">
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+	function findroutes(){
+		if($("#routes").val().length>0){
+			rout=escape($("#routes").val());
+			$.get("10-13.php",{sBus:rout},
+				function(data){
+					var aResult=new Array();
+					if(data.length>0){
+						aResult=data.split(",");
+						setroutes(aResult);
+					}
+					else clearroutes();
+				});
+		}
+		else clearroutes();
+	}
+	function setroutes(aResult){
+		clearroutes();
+		$("#popup").addClass("show");
+		for(var i=1;i<aResult.length;i++)
+			$("#route_ul").append($("<li>"+aResult[i]+"</li>"));
+		$("#route_ul").find("li").click(function(){
+			$("#routes").val($(this).test());
+			clearroutes();
+
+		}).hover(
+		function(){$(this).addClass("mouseOver");},
+		function(){$(this).removeClass("mouseOver");}
+		);}
+		function clearroutes(){
+			$("#route_ul").empty();
+			$("#popup").removeClass("show");
+		}
+</script>
+<form method="post">公交线：
+<input type="test" id="routes" onkeyup="findroutes();" />
+</form>
+<div id="popup">
+	<ul id="route_ul"></ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>continue语句示例</title>
+</head>
+<body>
+<script type="text/javascript">
+	var sUrl="www.baidu.com";
+	var iLength=sUrl.length;
+	var iCount=0;
+	for (var i = 0; i < iLength; i++) {
+		if (sUrl.charAt(i)>="y") {
+		continue;
+	}
+	alert(sUrl.charAt(i));/*输出小于y的字符的字符*/
+	};
+</script>
+</body>
+</html>

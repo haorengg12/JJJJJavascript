@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="jquery-2.2.3.min.js"></script>
+<script>
+	$(function(){
+		bindDrag($("#test")[0]);
+	});
+	function bindDrag(el){
+		var els=el.style,
+		x=y=0;
+		$(el).mousedown(function(e){
+			x=e.pageX-el.offsetLeft;
+			y=e.pageY-el.offsetTop;
+			el.setCapture && el.setCapture();
+		$(document).bind('mousemove',mouseMove).bind('mouseup',mouseUp);
+		});
+	function mouseMove(e){
+		els.left=e.pageX-x+'px';
+		els.top=e.pageY-y+'px';
+	}
+	function mouseUp(){
+		el.releaseCapture && el.releaseCapture();
+		$(document).unbind('mousemove',mouseMove).unbind('mouseup',mouseUp);
+	}
+	}
+</script>
+</head>
+<body>
+<style type="text/css">
+#test{
+	position:absolute;top:0;left:0;
+	width:200px;height:100px;background:#ccc;
+	text-align:center; line-height:100px;
+}
+</style>
+<div id="test">dasdasd</div>
+</body>
+</html>

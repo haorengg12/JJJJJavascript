@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>kkk</title>
+	<script src="jquery-2.2.3.min.js"></script>
+	<script>
+		$(function(){
+			$("#accordion > li > a + *:not(:first)").hide();
+			$("#accordion > li > a").click(function(){
+				$(this).parent().parent().each(function(){
+					$("> li > a + *",this).slideUp();
+				});
+				$("+ *",this).slideDown();
+			});
+		});
+	</script>
+</head>
+<body>
+<ul id="accordion">
+	<li>
+		<a href="#">kkk</a>
+		<ul>
+			<li><a href="">黄锦弘</a></li>
+			<li><a href="">黄锦弘</a></li>
+			<li><a href="">黄锦弘</a></li>
+			<li><a href="">黄锦弘</a></li>
+			<li><a href="">黄锦弘</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#">ccc</a>
+		<ul>
+			<li><a href="">是个大帅哥</a></li>
+			<li><a href="">是个大帅哥</a></li>
+			<li><a href="">是个大帅哥</a></li>
+			<li><a href="">是个大帅哥</a></li>
+			<li><a href="">是个大帅哥</a></li>
+		</ul>
+	</li>
+		<li>
+		<a href="#">bbb</a>
+		<ul>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#">ddd</a>
+		<ul>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+			<li><a href="">dasdasd</a></li>
+		</ul>
+	</li>
+</ul>
+<style type="text/css">
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+}
+#accordion{
+	width: 200px;
+}
+#accordion li{
+	border-bottom: 1px solid #ed9f9f;
+}
+#accordion a{
+	font-size: 14px;
+	color: #ffffff;
+	text-decoration: none;
+	display: block;
+	padding: 5px 5px 5px 0.5em;
+	border-left: 12px solid #711515;
+	border-right: 1px solid #711515;
+	background-color: #c11136;
+	height: 1em;
+}
+#accordion a:hover{
+	background-color: #990020;
+	color: #ffff00;
+}
+#accordion li ul li{
+	border-top: 1px solid #ed9f9f;
+}
+#accordion li ul li a{
+	padding: 3pa 3pa 3pa 0.5em;
+	border-left: 28px solid #a71f1f;
+	border-right: 1px solid #711515;
+	background-color: #e85070;
+}
+#accordion li ul li a:hover{
+	background-color: #c2425d;
+	color: #ffff00;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="a.css">
+    <title>测试用计算器（待升级）</title>
+</head>
+<body>
+<script type="text/javascript">
+	var results="";
+	var results2="";
+	var calresults="";
+	var lastkey="";
+	var flg=1;
+	var re1=/^[\*|\/].+/;
+	var re2=/.+[\*|\/]$/;
+	var re3=/(\+|-|\*|\/)/;
+	var re4=/.+[\+|-|\*|\/]{1,99}.+/;
+	var re5=/\d.+/;
+function calculater(){
+	if (event.srcElement.innerText=="=") {
+		return;
+}
+	if (event.srcElement.innerText=="AC") {
+	results="";
+	display.innerText="0";
+	return;
+}
+	if (event.srcElement.id=="display"){
+	return;
+}/*防止按输出的框的时候也会造成输入*/
+	if (event.srcElement.id=="equality") {
+	return;
+}
+	if (results.match(re1)) {
+	display.innerText="输入错误";
+	results="";
+	return;
+}
+	if(lastkey.match(re3)&&event.srcElement.innerText.match(re3)){
+	return;
+}
+	if(lastkey=="="&&event.srcElement.innerText.match(re3)){
+	results=calresults;
+}
+	if (event.srcElement.innerText=="+/-"&&results!="") {
+		if (flg==-1) {
+		results=String(results2);
+		display.innerText=results;
+		flg=-flg;
+		return;
+	}
+	results2=results;
+	results = "-"+"("+results+")";
+	flg=-flg;
+	display.innerText=results;
+	return; 
+}
+results+=event.srcElement.innerText;/*设置results为全局变量，event.srcElement.innerText用+=累加进results，
+这样我们就能输入并显示一条算式*/
+lastkey=event.srcElement.innerText;
+display.innerText=results;/*用innerText，来输出这个点击的值，display是第一排的id，就是会在第一排输出*/
+}
+function resultscalcaulte(){
+	calresults=eval(results);
+	display.innerText=calresults;
+}
+</script>
+<table id="calculater" onClick="calculater()"><!-- 点击事件，详细的事件，在上面的scrip里 -->
+<tr>
+	<td id="display" colspan="5">0</td><!-- colspan合并竖向五列 -->
+</tr>
+<tr>
+	<td id="kk" class="numberkey" >1</td>
+	<td class="numberkey" >2</td>
+	<td class="numberkey" >3</td>
+	<td class="numberkey" >+</td>
+	<td class="numberkey" id="deletesign">AC</td>
+</tr>
+<tr>
+	<td class="numberkey" >4</td>
+	<td class="numberkey" >5</td>
+	<td class="numberkey" >6</td>
+	<td class="numberkey" >-</td>
+	<td rowspan="3" id="equality" onClick="resultscalcaulte()">=</td> <!-- rowspan合并横向三个 -->
+</tr>
+<tr>
+	<td class="numberkey" >7</td>
+	<td class="numberkey" >8</td>
+	<td class="numberkey" >9</td>
+	<td class="numberkey" >×</td>
+</tr>
+<tr>
+	<td class="numberkey" >+/-</td>
+	<td class="numberkey" >0</td>
+	<td class="numberkey" >.</td>
+	<td class="numberkey" >/</td>
+</tr>
+</body>
+</html>
