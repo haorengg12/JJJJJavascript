@@ -1,4 +1,4 @@
-// <?
+<?
 // class Mystr{
 // 	var $str;
 // 	function output(){
